@@ -1,12 +1,21 @@
 
 import React from 'react'
-import { Text,View, Image, StyleSheet } from 'react-native';
+import { Text,View, Image, StyleSheet, Pressable } from 'react-native';
 import styles from './styles';
+import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 
 export default function ChatRoomComponent({chatRoom}) {
-  const user = chatRoom.users[1]; //gives the details of sender
+  //Let's get the details of sender first
+  const user = chatRoom.users[1]; 
+  const navigation = useNavigation();
+  const onPress= ()=>{
+    // console.warn("Pressed!");
+    navigation.navigate("ChatRoom", {id:chatRoom.id});
+
+  }
+  
   return (
-    <View style = {styles.container}>
+    <Pressable onPress= {onPress} style = {styles.container}>
     <Image source= {{uri: user.imageUri}} 
     style = {styles.image} />
     {chatRoom.newMessages &&  <View style = {styles.badgeContainer}>
@@ -20,6 +29,6 @@ export default function ChatRoomComponent({chatRoom}) {
   </View>
   <Text numberOfLines={1} ellipsizeMode="head" style = {styles.text}>{chatRoom.lastMessage.content} </Text>
   </View>
-  </View>
+  </Pressable>
   )
 }
