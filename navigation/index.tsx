@@ -3,6 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
+
 import { Feather, FontAwesome } from '@expo/vector-icons';
 
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
