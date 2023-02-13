@@ -71,7 +71,7 @@ const HomeHeader= (props) =>{
 
 const ChatRoomHeader= (props) =>{
   const {width}= useWindowDimensions();
-  console.warn(props)
+  // console.warn(props)
   return (
     <View style = {{flexDirection:"row", justifyContent:"space-between", width:width-50, padding:10, 
     marginLeft:-25,

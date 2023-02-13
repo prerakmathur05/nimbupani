@@ -1,0 +1,23 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nimbupani-staging-22149-authRole",
+      "UnauthRoleArn": "arn:aws:iam::207659423582:role/amplify-nimbupani-staging-22149-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::207659423582:role/amplify-nimbupani-staging-22149-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-nimbupani-staging-22149-deployment",
+      "UnauthRoleName": "amplify-nimbupani-staging-22149-unauthRole",
+      "StackName": "amplify-nimbupani-staging-22149",
+      "StackId": "arn:aws:cloudformation:us-west-2:207659423582:stack/amplify-nimbupani-staging-22149/01c5a4b0-aa7c-11ed-bf3c-0259d0d8e1f3",
+      "AmplifyAppId": "dcalo5c6m9b9d"
+    },
+    "categories": {
+      "auth": {
+        "nimbupanied3e4d64": {}
+      },
+      "api": {
+        "nimbupani": {}
+      }
+    }
+  }
+}
