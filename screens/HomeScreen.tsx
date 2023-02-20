@@ -16,10 +16,10 @@ export default function TabOneScreen() {
   <FlatList 
   data = {ChatRoomData}
   renderItem = { ({item}) => <ChatRoomComponent chatRoomData={item} />} />
-{/* <Pressable style ={{backgroundColor:'red', alignItems:'center', borderRadius:10, height:50, margin:10, justifyContent:'center'}} onPress= {logout}>
+<Pressable style ={{backgroundColor:'red', alignItems:'center', borderRadius:10, height:50, margin:10, justifyContent:'center'}} onPress= {logout}>
 <Text>Logout</Text>
-
-</Pressable> */}
+    
+</Pressable>
   </View>
   );
 }

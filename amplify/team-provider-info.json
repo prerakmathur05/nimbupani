@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-nimbupani-staging-22149-unauthRole",
       "StackName": "amplify-nimbupani-staging-22149",
       "StackId": "arn:aws:cloudformation:us-west-2:207659423582:stack/amplify-nimbupani-staging-22149/01c5a4b0-aa7c-11ed-bf3c-0259d0d8e1f3",
-      "AmplifyAppId": "dcalo5c6m9b9d"
+      "AmplifyAppId": "dcalo5c6m9b9d",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-nimbupani-staging-22149-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
@@ -17,6 +18,12 @@
       },
       "api": {
         "nimbupani": {}
+      },
+      "function": {
+        "nimbupanied3e4d64PostConfirmation": {
+          "deploymentBucketName": "amplify-nimbupani-staging-22149-deployment",
+          "s3Key": "amplify-builds/nimbupanied3e4d64PostConfirmation-48634532476c63532b72-build.zip"
+        }
       }
     }
   }

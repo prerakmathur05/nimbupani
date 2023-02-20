@@ -5082,7 +5082,7 @@
   dependencies:
     "buffer" "^5.2.1"
 
-"aws-amplify@5.x.x":
+"aws-amplify@^5.0.14", "aws-amplify@5.x.x":
   "integrity" "sha512-gSReh4rZgyjQZeAJ52vjczedhlzGkF2Qbo1D98/jzownBsMBCk9eQnsyklUcgsoCD/uc/FVWiZEG702Bn/wddQ=="
   "resolved" "https://registry.npmjs.org/aws-amplify/-/aws-amplify-5.0.14.tgz"
   "version" "5.0.14"
@@ -8388,6 +8388,11 @@
   "integrity" "sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw=="
   "resolved" "https://registry.npmjs.org/he/-/he-1.2.0.tgz"
   "version" "1.2.0"
+
+"hermes-engine@^0.11.0":
+  "integrity" "sha512-7aMUlZja2IyLYAcZ69NBnwJAR5ZOYlSllj0oMpx08a8HzxHOys0eKCzfphrf6D0vX1JGO1QQvVsQKe6TkYherw=="
+  "resolved" "https://registry.npmjs.org/hermes-engine/-/hermes-engine-0.11.0.tgz"
+  "version" "0.11.0"
 
 "hermes-estree@0.8.0":
   "integrity" "sha512-W6JDAOLZ5pMPMjEiQGLCXSSV7pIBEgRR5zGkxgmzGSXHOxqV5dC/M1Zevqpbm9TZDE5tu358qZf8Vkzmsc+u7Q=="
