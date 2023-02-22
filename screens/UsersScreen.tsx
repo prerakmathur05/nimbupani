@@ -1,20 +1,47 @@
 import * as React from  'react';
 import { Text,View, Image, StyleSheet, FlatList, Pressable } from 'react-native';
 import UserComponent from '../components/UserComponent ';
-import Users from '../assets/dummy-data/Users';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useState, useEffect } from 'react';
+
+
+import { DataStore } from '@aws-amplify/datastore';
+import {User} from "../src/models";
+
 
 
 
 
 export default function UsersScreen() {
+  const [users, setUsers]= useState<User[]>([])
+  // const models = DataStore.query(User);
+  // console.log("user models ", models);
+  // useEffect(()=>{
+  //   const fetchUsers = async() =>{
+  //     // console.log("loggging")
+  //     const fetchedUsers= await DataStore.query(User);
+  //     // setUsers(fetchedUsers);
+  //     console.log("users  -->",fetchedUsers);
+  //   };
+  //    fetchUsers()
+  // }, [])
+
+  useEffect(() => {
+    DataStore.query(User).then(setUsers);
+    // console.log("users", users );
+  }, []);
+
+
   return (
   <View style = {styles.page}>
-  <FlatList 
-  data = {Users}
-  renderItem = { ({item}) => <UserComponent user={item} />} />
-    
 
+    <FlatList 
+  data = {users}
+  renderItem = { ({item}) => <UserComponent user={item} />} />
+  
+
+  
   </View>
   );
 }

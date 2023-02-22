@@ -58,6 +58,10 @@ const HomeHeader= (props) =>{
   const {width}= useWindowDimensions();
 
   const navigation= useNavigation();
+  const navigateUsersScreen = () =>{
+    // console.warn("Presssed");
+    navigation.navigate("UsersScreen");
+  }
   return (
     <View style = {{flexDirection:"row", justifyContent:"space-between", width:width, 
     marginLeft:0,
@@ -69,7 +73,7 @@ const HomeHeader= (props) =>{
       <Text style= {{flex:1, textAlign:"center", marginLeft:40, fontWeight:"bold"}}>SCU Connect</Text>
       <Feather name = "camera" size= {24} style ={{marginHorizontal:10}}/>
       
-      <Pressable onPress={() => navigation.navigate('UsersScreen')}>
+      <Pressable onPress={navigateUsersScreen}>
       <Feather name = "edit-2" size= {24} style ={{marginHorizontal:10}}/>
       </Pressable>
 

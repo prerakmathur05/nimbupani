@@ -21,7 +21,7 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
     "amazon-cognito-identity-js": "^6.1.2",
-    "aws-amplify": "^5.0.14",
+    "aws-amplify": "^5.0.15",
     "aws-amplify-react-native": "^7.0.2",
     "expo": "~47.0.3",
     "expo-asset": "~8.6.2",
