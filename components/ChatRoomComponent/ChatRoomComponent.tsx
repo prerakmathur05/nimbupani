@@ -5,6 +5,7 @@ import styles from './styles';
 import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 
 export default function ChatRoomComponent({chatRoomData}) {
+
   //Let's get the details of sender first
   const user = chatRoomData.users[1]; 
   const navigation = useNavigation();

@@ -26,7 +26,7 @@ export default function UsersScreen() {
   //   };
   //    fetchUsers()
   // }, [])
-
+  console.warn("You and IIIIII")
   useEffect(() => {
     DataStore.query(User).then(setUsers);
     // console.log("users", users );
