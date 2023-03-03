@@ -2,7 +2,7 @@
   "expo": {
     "name": "nimbupani",
     "slug": "nimbupani",
-    "jsEngine":"hermes",
+
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

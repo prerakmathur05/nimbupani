@@ -19,6 +19,9 @@ export default function UserComponent({user}) {
   //   // navigation.navigate("ChatRoom", {id:user.id});
 
   // }
+
+
+
   const navigation = useNavigation();
   const onPress = async ()=>{
     //check for existing chatroom between the users
@@ -58,8 +61,7 @@ navigation.navigate("ChatRoom", {id:newChatRoom.id});
 
     <Pressable  style = {styles.container} onPress= {onPress}>
     
-    <Image source= {{uri: user.imageUri}} 
-    style = {styles.image} />  
+    <Image source= {{uri: user.imageUri}} style = {styles.image} />  
   
   <View style ={styles.rightContainer}>
   <View style = {styles.row}>

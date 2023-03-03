@@ -17,7 +17,7 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
-import HomeScreen from "../screens/HomeScreen";
+import TabOneScreen from "../screens/HomeScreen";
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import UsersScreen from "../screens/UsersScreen"
 
@@ -42,7 +42,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown:true }}>
-      <Stack.Screen name="Home" component={HomeScreen} options = {{headerTitle: HomeHeader}}  />
+      <Stack.Screen name="Home" component={TabOneScreen} options = {{headerTitle: HomeHeader}}  />
       <Stack.Screen name="ChatRoom" component={ChatRoomScreen}  options = {{headerTitle:ChatRoomHeader }}/>
       <Stack.Screen name="UsersScreen" component={UsersScreen}  options = {{title:"Users" }}/>
 

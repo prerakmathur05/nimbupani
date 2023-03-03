@@ -26,15 +26,28 @@ export default function UsersScreen() {
   //   };
   //    fetchUsers()
   // }, [])
-  console.warn("You and IIIIII")
+  // console.warn("You and IIIIII")
   useEffect(() => {
-    DataStore.query(User).then(setUsers);
-    // console.log("users", users );
-  }, []);
+    
+    const fetchAllUsers = async () =>{
+      console.warn("Fucntion called => " )
+
+      const promisedFetchedAllUsers = await DataStore.query(User);
+    
+      const resolvedFetchedUsers = await Promise.all(promisedFetchedAllUsers);
+      console.warn("fetchedAllUsers=> ", resolvedFetchedUsers );
+
+      setUsers(resolvedFetchedUsers);
+
+  }
+  fetchAllUsers();}
+  , []);
 
 
   return (
   <View style = {styles.page}>
+
+
 
     <FlatList 
   data = {users}

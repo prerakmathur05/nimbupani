@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     image:{
       height:60,
       width:60,
-     borderRadius:50,
+     borderRadius:30,
      marginRight:10,
     },
     badgeContainer :{
