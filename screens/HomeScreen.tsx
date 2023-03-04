@@ -10,13 +10,11 @@
 //   });
 
 
-
-
 import * as React from  'react';
 import { useState, useEffect } from 'react';
 import { Text,View, Image, StyleSheet, FlatList, Pressable } from 'react-native';
 import ChatRoomComponent from '../components/ChatRoomComponent'; 
-import ChatRoomData from '../assets/dummy-data/ChatRooms';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Auth, DataStore } from 'aws-amplify';
 import { ChatRoom, ChatRoomUser } from "../src/models";

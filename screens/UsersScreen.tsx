@@ -30,11 +30,12 @@ export default function UsersScreen() {
   useEffect(() => {
     
     const fetchAllUsers = async () =>{
-      console.warn("Fucntion called => " )
+      console.warn("Function called => " )
 
       const promisedFetchedAllUsers = await DataStore.query(User);
-    
+      
       const resolvedFetchedUsers = await Promise.all(promisedFetchedAllUsers);
+      
       console.warn("fetchedAllUsers=> ", resolvedFetchedUsers );
 
       setUsers(resolvedFetchedUsers);

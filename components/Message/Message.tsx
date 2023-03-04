@@ -1,12 +1,34 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {Auth, DataStore} from "aws-amplify";
+import {User} from "../../src/models";
 
 const blue= '#3777f0';
 const grey ='lightgrey';
 const myId='u1';
 
 export default function Message({message}) {
-    const isMe= message.user.id === myId; 
+    const [user, setUser] = useState<User|undefined>()
+    const [isMe, setIsMe] = useState<Boolean>(false)
+
+    useEffect(()=>{
+      DataStore.query(User, message.userID).then(setUser);
+    },[])
+    
+useEffect(()=>{
+  const checkIfMe = async()=>{
+    if (!user){
+      return ;
+    }
+    const authUser = await Auth.currentAuthenticatedUser();
+    setIsMe(user.id===authUser.attributes.sub);
+  }
+  checkIfMe();
+}, [user])
+
+
+
+    // message.userID === me.attributes .sub; 
 
   return (
     <View style = {[
@@ -15,6 +37,8 @@ export default function Message({message}) {
     </View>
   )
 }
+
+  
 const styles = StyleSheet.create({
     container:{
     backgroundColor:'#377f0',

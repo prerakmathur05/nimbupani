@@ -6,7 +6,7 @@ import { NavigationHelpersContext, useNavigation } from '@react-navigation/nativ
 import { Auth, DataStore } from 'aws-amplify';
 import { ChatRoom, User, ChatRoomUser } from '../../src/models';
 import { Alert } from 'react-native';
-
+  
 
 
 

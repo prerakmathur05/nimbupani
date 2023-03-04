@@ -4,21 +4,18 @@ import { Text,View, Image, StyleSheet, Pressable } from 'react-native';
 import styles from './styles';
 import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 import {Auth, DataStore} from "aws-amplify";
-import {User, ChatRoomUser} from "../../src/models"
+import {User, ChatRoomUser, Message} from "../../src/models"
 // import Users from '../../assets/dummy-data/Users';
 
 export default function ChatRoomComponent({chatRoomData}) {
 
   //Let's get the details of sender first
   // const user = chatRoomData.users[1]; 
-  const navigation = useNavigation();
-  const onPress= ()=>{
-    // console.warn("Pressed!");
-    navigation.navigate("ChatRoom", {id:chatRoomData.id});
-
-  }
+  
   // const [users, setUsers]= useState<User[]>([])
+
   const [user, setUser]= useState<User|null>(null)
+  const [lastMessage, setLastMessage] = useState<Message|undefined>()
   useEffect(()=>{
     const fetchUsers = async ()=>{
       const promisedFetchedUsers = (await DataStore.query(ChatRoomUser))
@@ -36,7 +33,21 @@ export default function ChatRoomComponent({chatRoomData}) {
     fetchUsers();
   }, [])
 
+  useEffect(()=>{
+    if (!chatRoomData.chatRoomLastMessageId){
+      return ;
+    }
+    DataStore.query(Message, chatRoomData.chatRoomLastMessageId).then(setLastMessage);
 
+
+  },[])
+  
+  const navigation = useNavigation();
+  const onPress= ()=>{
+    // console.warn("Pressed!");
+    navigation.navigate("ChatRoom", {id:chatRoomData.id});
+
+  }
   return (
     <Pressable onPress= {onPress} style = {styles.container}>
     <Image source= {{uri: user?.imageUri}} style = {styles.image} />
@@ -47,9 +58,9 @@ export default function ChatRoomComponent({chatRoomData}) {
   <View style ={styles.rightContainer}> 
   <View style = {styles.row}>
   <Text style = {styles.name}>{user?.name}</Text>
-  <Text style = {styles.text}>{chatRoomData.lastMessage?.createdAt}</Text>
+  <Text style = {styles.text}>{lastMessage?.createdAt}</Text>
   </View>
-  <Text numberOfLines={1} ellipsizeMode="head" style = {styles.text}>{chatRoomData.lastMessage?.content} </Text>
+  <Text numberOfLines={1} ellipsizeMode="head" style = {styles.text}>{lastMessage?.content} </Text>
   </View>
     </Pressable>
     )
