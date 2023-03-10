@@ -7,13 +7,32 @@ import { View,
     Platform } from 'react-native'
 import React, {useState} from 'react'
 import { SimpleLineIcons, Feather, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons'
-export default function MessageInput() {
+import {Auth, DataStore} from "aws-amplify";
+import {ChatRoom, Message} from "../../src/models";
+
+
+export default function MessageInput({chatRoom}) {
   const [message, setMessage]= useState("");
 //   console.warn(message)
-const sendMessage= ()=>{
-    console.warn("Message sent")
-    setMessage("")
+const sendMessage= async()=>{
+    const user = await Auth.currentAuthenticatedUser()
+    const newMessage = await DataStore.save(new Message ({
+        content:message,
+        userID:user.attributes.sub,
+        chatroomID:chatRoom.id,
+
+    }))
+    updateLastMessage(newMessage);
+    setMessage("");
 }
+
+const updateLastMessage = async(newMessage)=>{
+    DataStore.save(ChatRoom.copyOf(chatRoom,updatedChatRoom =>{
+        updatedChatRoom.LastMessage = newMessage;
+    }))
+}
+
+
 const onPressClicked= ()=>{
     console.warn("Buttton clicked")
 }

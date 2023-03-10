@@ -6,7 +6,7 @@
 
 import { Feather, FontAwesome } from '@expo/vector-icons';
 
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable, Text, View, Image, useWindowDimensions } from 'react-native';
@@ -17,8 +17,10 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
-import HomeScreen from "../screens/HomeScreen";
+import TabOneScreen from "../screens/HomeScreen";
 import ChatRoomScreen from '../screens/ChatRoomScreen';
+import UsersScreen from "../screens/UsersScreen"
+import ProfileScreen from "../screens/ProfileScreen";
 
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -40,8 +42,10 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown:true }}>
-      <Stack.Screen name="Home" component={HomeScreen} options = {{headerTitle: HomeHeader}}  />
+      <Stack.Screen name="Home" component={TabOneScreen} options = {{headerTitle: HomeHeader}}  />
       <Stack.Screen name="ChatRoom" component={ChatRoomScreen}  options = {{headerTitle:ChatRoomHeader }}/>
+      <Stack.Screen name="UsersScreen" component={UsersScreen}  options = {{title:"Users" }}/>
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen}  options = {{title:"Profile" }}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
@@ -52,6 +56,17 @@ function RootNavigator() {
 }
 const HomeHeader= (props) =>{
   const {width}= useWindowDimensions();
+
+  const navigation= useNavigation();
+  const navigateUsersScreen = () =>{
+    // console.warn("Presssed");
+    navigation.navigate("UsersScreen");
+  }
+  const navigateProfileScreen = () =>{
+    console.warn("Naviagting to profile page");
+    navigation.navigate("ProfileScreen");
+  }
+
   return (
     <View style = {{flexDirection:"row", justifyContent:"space-between", width:width, 
     marginLeft:0,
@@ -61,10 +76,17 @@ const HomeHeader= (props) =>{
       style = {{width:30, height:30, borderRadius:30}}
       />
       <Text style= {{flex:1, textAlign:"center", marginLeft:40, fontWeight:"bold"}}>SCU Connect</Text>
-      <Feather name = "camera" size= {24} style ={{marginHorizontal:10}}/>
-      <Feather name = "edit-2" size= {24} style ={{marginHorizontal:10}}/>
+      <Pressable onPress= {navigateProfileScreen}>
+
+      <Feather name = "user" size= {24} style ={{marginHorizontal:10}} color="blue" />
+      </Pressable>
+      
+      <Pressable onPress={navigateUsersScreen}>
+      <Feather name = "edit-2" size= {24} style ={{marginHorizontal:10}} color="blue"/>
+      </Pressable>
 
 
+    
     </View>
   )
 }
