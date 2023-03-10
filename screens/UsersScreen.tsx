@@ -5,7 +5,7 @@ import UserComponent from '../components/UserComponent ';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
 
-
+import '@azure/core-asynciterator-polyfill';
 import { DataStore } from '@aws-amplify/datastore';
 import {User} from "../src/models";
 
@@ -30,15 +30,21 @@ export default function UsersScreen() {
   useEffect(() => {
     
     const fetchAllUsers = async () =>{
-      console.warn("Function called => " )
+      // console.warn("Function called => " )
+      try{
 
-      const promisedFetchedAllUsers = await DataStore.query(User);
+        const promisedFetchedAllUsers = await DataStore.query(User);
       
-      const resolvedFetchedUsers = await Promise.all(promisedFetchedAllUsers);
-      
-      console.warn("fetchedAllUsers=> ", resolvedFetchedUsers );
+        const resolvedFetchedUsers = await Promise.all(promisedFetchedAllUsers);
+        
+        console.warn("fetchedAllUsers=> ", resolvedFetchedUsers );
+  
+        setUsers(resolvedFetchedUsers);
+      }
+      catch (e){
+        console.log(e)
+      }
 
-      setUsers(resolvedFetchedUsers);
 
   }
   fetchAllUsers();}

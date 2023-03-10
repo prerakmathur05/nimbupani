@@ -1,5 +1,257 @@
 export const schema = {
     "models": {
+        "MentorRelation": {
+            "name": "MentorRelation",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "menteeID": {
+                    "name": "menteeID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "mentorID": {
+                    "name": "mentorID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "MentorRelations",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Mentee": {
+            "name": "Mentee",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "User": {
+                    "name": "User",
+                    "isArray": false,
+                    "type": {
+                        "model": "User"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
+                        "targetNames": [
+                            "menteeUserId"
+                        ]
+                    }
+                },
+                "mentorID": {
+                    "name": "mentorID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "menteeUserId": {
+                    "name": "menteeUserId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Mentees",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byMentor",
+                        "fields": [
+                            "mentorID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Mentor": {
+            "name": "Mentor",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "User": {
+                    "name": "User",
+                    "isArray": false,
+                    "type": {
+                        "model": "User"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
+                        "targetNames": [
+                            "mentorUserId"
+                        ]
+                    }
+                },
+                "Mentees": {
+                    "name": "Mentees",
+                    "isArray": true,
+                    "type": {
+                        "model": "Mentee"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "mentorID"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "mentorUserId": {
+                    "name": "mentorUserId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Mentors",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Message": {
             "name": "Message",
             "fields": {
@@ -270,6 +522,13 @@ export const schema = {
                         ]
                     }
                 },
+                "type": {
+                    "name": "type",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -413,6 +672,6 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "codegenVersion": "3.3.5",
-    "version": "036d768b71b1104ddfa60321b66dc1a1"
+    "codegenVersion": "3.3.6",
+    "version": "98a700ab5ac781c7aa6fb2a5150d7872"
 };

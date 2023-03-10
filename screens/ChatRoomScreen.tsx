@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
 import React, {useEffect, useState} from 'react'
+import '@azure/core-asynciterator-polyfill';
+
 import Message from '../components/Message'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import Chat from '../assets/dummy-data/Chats'

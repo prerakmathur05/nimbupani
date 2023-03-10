@@ -6,6 +6,100 @@ import { LazyLoading, LazyLoadingDisabled, AsyncItem, AsyncCollection } from "@a
 
 
 
+type EagerMentorRelation = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<MentorRelation, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly menteeID?: string | null;
+  readonly mentorID?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyMentorRelation = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<MentorRelation, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly menteeID?: string | null;
+  readonly mentorID?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type MentorRelation = LazyLoading extends LazyLoadingDisabled ? EagerMentorRelation : LazyMentorRelation
+
+export declare const MentorRelation: (new (init: ModelInit<MentorRelation>) => MentorRelation) & {
+  copyOf(source: MentorRelation, mutator: (draft: MutableModel<MentorRelation>) => MutableModel<MentorRelation> | void): MentorRelation;
+}
+
+type EagerMentee = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Mentee, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly User?: User | null;
+  readonly mentorID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly menteeUserId?: string | null;
+}
+
+type LazyMentee = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Mentee, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly User: AsyncItem<User | undefined>;
+  readonly mentorID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly menteeUserId?: string | null;
+}
+
+export declare type Mentee = LazyLoading extends LazyLoadingDisabled ? EagerMentee : LazyMentee
+
+export declare const Mentee: (new (init: ModelInit<Mentee>) => Mentee) & {
+  copyOf(source: Mentee, mutator: (draft: MutableModel<Mentee>) => MutableModel<Mentee> | void): Mentee;
+}
+
+type EagerMentor = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Mentor, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly User?: User | null;
+  readonly Mentees?: (Mentee | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly mentorUserId?: string | null;
+}
+
+type LazyMentor = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Mentor, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly User: AsyncItem<User | undefined>;
+  readonly Mentees: AsyncCollection<Mentee>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly mentorUserId?: string | null;
+}
+
+export declare type Mentor = LazyLoading extends LazyLoadingDisabled ? EagerMentor : LazyMentor
+
+export declare const Mentor: (new (init: ModelInit<Mentor>) => Mentor) & {
+  copyOf(source: Mentor, mutator: (draft: MutableModel<Mentor>) => MutableModel<Mentor> | void): Mentor;
+}
+
 type EagerMessage = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Message, 'id'>;
@@ -85,6 +179,7 @@ type EagerUser = {
   readonly status?: string | null;
   readonly Messages?: (Message | null)[] | null;
   readonly ChatRooms?: (ChatRoomUser | null)[] | null;
+  readonly type?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -100,6 +195,7 @@ type LazyUser = {
   readonly status?: string | null;
   readonly Messages: AsyncCollection<Message>;
   readonly ChatRooms: AsyncCollection<ChatRoomUser>;
+  readonly type?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

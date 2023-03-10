@@ -1,3 +1,21 @@
+type MentorRelation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  menteeID: ID
+  mentorID: ID
+}
+
+type Mentee @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  User: User @hasOne
+  mentorID: ID! @index(name: "byMentor")
+}
+
+type Mentor @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  User: User @hasOne
+  Mentees: [Mentee] @hasMany(indexName: "byMentor", fields: ["id"])
+}
+
 type Message @model @auth(rules: [{allow: public}]) {
   id: ID!
   content: String!
@@ -20,5 +38,5 @@ type User @model @auth(rules: [{allow: public}]) {
   status: String
   Messages: [Message] @hasMany(indexName: "byUser", fields: ["id"])
   ChatRooms: [ChatRoom] @manyToMany(relationName: "ChatRoomUser")
-}
- 
+  type: String
+} 

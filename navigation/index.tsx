@@ -20,7 +20,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 import TabOneScreen from "../screens/HomeScreen";
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import UsersScreen from "../screens/UsersScreen"
-
+import ProfileScreen from "../screens/ProfileScreen";
 
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -45,7 +45,7 @@ function RootNavigator() {
       <Stack.Screen name="Home" component={TabOneScreen} options = {{headerTitle: HomeHeader}}  />
       <Stack.Screen name="ChatRoom" component={ChatRoomScreen}  options = {{headerTitle:ChatRoomHeader }}/>
       <Stack.Screen name="UsersScreen" component={UsersScreen}  options = {{title:"Users" }}/>
-
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen}  options = {{title:"Profile" }}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
@@ -62,6 +62,11 @@ const HomeHeader= (props) =>{
     // console.warn("Presssed");
     navigation.navigate("UsersScreen");
   }
+  const navigateProfileScreen = () =>{
+    console.warn("Naviagting to profile page");
+    navigation.navigate("ProfileScreen");
+  }
+
   return (
     <View style = {{flexDirection:"row", justifyContent:"space-between", width:width, 
     marginLeft:0,
@@ -71,10 +76,13 @@ const HomeHeader= (props) =>{
       style = {{width:30, height:30, borderRadius:30}}
       />
       <Text style= {{flex:1, textAlign:"center", marginLeft:40, fontWeight:"bold"}}>SCU Connect</Text>
-      <Feather name = "camera" size= {24} style ={{marginHorizontal:10}}/>
+      <Pressable onPress= {navigateProfileScreen}>
+
+      <Feather name = "user" size= {24} style ={{marginHorizontal:10}} color="blue" />
+      </Pressable>
       
       <Pressable onPress={navigateUsersScreen}>
-      <Feather name = "edit-2" size= {24} style ={{marginHorizontal:10}}/>
+      <Feather name = "edit-2" size= {24} style ={{marginHorizontal:10}} color="blue"/>
       </Pressable>
 
 

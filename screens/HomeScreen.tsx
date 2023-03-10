@@ -25,12 +25,21 @@ import { ChatRoom, ChatRoomUser } from "../src/models";
 export default function TabOneScreen() {
   const [chatRooms, setChatRooms]= useState<ChatRoom[]>([]);
 
-  //useEffect for fetching the chatrooms
+  //test
+  // useEffect(()=>{
+  //   const fetchDummyData = async () =>{
+  //     const dummyData = await fetch("https://dummy.restapiexample.com/api/v1/employees")
+  //     console.warn("dekho voh aagaya",dummyData);
+  //   }
+  //   fetchDummyData();
+  // },[])
+ 
+  // useEffect for fetching the chatrooms 
   useEffect(()=>{
     const fetchChatRooms = async ()=>{ 
       //fetching the logged in user details
       const me = await Auth.currentAuthenticatedUser();
-      console.log(me)
+
       
       //filetering the chatrooms for the current logged in user
       
@@ -43,10 +52,10 @@ export default function TabOneScreen() {
       const promisedChatRooms = (await DataStore.query(ChatRoomUser))
       .filter( x =>x.userId === me.attributes.sub)
       .map(x=>x.chatRoom)
-      // console.log("chatrooms ids ==> ",promisedChatRooms);
+      // console.warn("chatrooms ids ==> ",promisedChatRooms);
 
       const reslovedChatRooms = await Promise.all(promisedChatRooms)
-      // console.log("chatrooms ==> ",reslovedChatRooms);
+      console.warn("chatrooms ==> ",reslovedChatRooms);
       setChatRooms(reslovedChatRooms);
     
     };
@@ -62,16 +71,16 @@ export default function TabOneScreen() {
   <FlatList 
   data = {chatRooms}
   renderItem = { ({item}) => <ChatRoomComponent chatRoomData={item} />} />
-  <Pressable style ={{backgroundColor:'red', alignItems:'center', borderRadius:10, height:50, margin:10, justifyContent:'center'}} onPress= {logout}>
+  {/* <Pressable style ={{backgroundColor:'red', alignItems:'center', borderRadius:10, height:50, margin:10, justifyContent:'center'}} onPress= {logout}>
   <Text>Logout</Text>
     
-</Pressable>
+</Pressable> */}
   </View>
   );
 }
 
 const styles = StyleSheet.create({
-  page:{
+page:{
 //just the div for each chat componet on tab1
 backgroundColor:'white',
 flex:1,  
