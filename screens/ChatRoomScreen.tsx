@@ -22,7 +22,7 @@ import {ChatRoom, Message as MessageModel} from "../src/models";
   const route= useRoute();
   console.log("route", route);
   const navigation = useNavigation();
-  navigation.setOptions({title:"Manushi Chillar"})
+
   
   // console.warn("displaying chatroom this id ", route.params?.id)
   

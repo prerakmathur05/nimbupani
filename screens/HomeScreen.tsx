@@ -55,7 +55,7 @@ export default function TabOneScreen() {
       // console.warn("chatrooms ids ==> ",promisedChatRooms);
 
       const reslovedChatRooms = await Promise.all(promisedChatRooms)
-      console.warn("chatrooms ==> ",reslovedChatRooms);
+      // console.warn("chatrooms ==> ",reslovedChatRooms);
       setChatRooms(reslovedChatRooms);
     
     };

@@ -30,7 +30,7 @@ export default function UserComponent({user}) {
 
 
     //create a new chatroom
-    console.log("my onPress clicked!", user);
+    // console.log("my onPress clicked!", user);
     const newChatRoom = await DataStore.save( new ChatRoom ({newMessages:0}));
 
 

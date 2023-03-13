@@ -23,7 +23,7 @@ export default function ChatRoomComponent({chatRoomData}) {
       .map(x=> x.user);
 
       const resolvedFetchedUsers = await Promise.all(promisedFetchedUsers)
-      console.log("Users are here ==> ", resolvedFetchedUsers)
+      // console.log("Users are here ==> ", resolvedFetchedUsers)
       // setUsers(resolvedFetchedUsers);
       const me = await Auth.currentAuthenticatedUser();
       setUser(resolvedFetchedUsers.find(user => user.id != me.attributes.sub)||null);

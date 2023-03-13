@@ -37,12 +37,12 @@ export default function UsersScreen() {
       
         const resolvedFetchedUsers = await Promise.all(promisedFetchedAllUsers);
         
-        console.warn("fetchedAllUsers=> ", resolvedFetchedUsers );
+        // console.warn("fetchedAllUsers=> ", resolvedFetchedUsers );
   
         setUsers(resolvedFetchedUsers);
       }
       catch (e){
-        console.log(e)
+        console.log("Error-->",e)
       }
 
 

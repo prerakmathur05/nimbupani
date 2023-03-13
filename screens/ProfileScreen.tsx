@@ -35,7 +35,7 @@ const changeImage = async () =>{
 }
 
 const newMentorRequest= () =>{
-    console.log("new mentor requested");
+    console.log("new mentor requested");    
 }
 
 export default function ProfileScreen() {
@@ -49,11 +49,12 @@ export default function ProfileScreen() {
     const fetchUserDetails = async () =>{
         const authUser = await  Auth.currentAuthenticatedUser();
         const userModelUser = await DataStore.query(User, authUser.attributes.sub)
+        setUser(userModelUser);
         
         const menteeUser= await (await DataStore.query(MentorRelation)).filter(x=>x.menteeID === userModelUser.id);
     
         const mentorForThisMentee = await DataStore.query(User, menteeUser[0].mentorID);
-        console.log("mentor is ->", mentorForThisMentee);
+        // console.log("mentor is ->", mentorForThisMentee);
 
         const promisedChatRooms = await (await DataStore.query(ChatRoomUser))
         .filter(x=> x.userId === userModelUser.id)
@@ -62,9 +63,8 @@ export default function ProfileScreen() {
         const resolvedChatRooms = await Promise.all(promisedChatRooms);
         
         
-        console.log("Chatrooms", resolvedChatRooms);
+        // console.log("Chatrooms", resolvedChatRooms);
 
-        setUser(userModelUser);
         setMentorUser(mentorForThisMentee);
     }
     
@@ -81,7 +81,7 @@ export default function ProfileScreen() {
     // },[])
     
     const initiateChat = ()=>{
-    console.log("Wait i will initiate")
+    console.log("Wait i will initiate the chat")
     }
     
 
@@ -95,6 +95,7 @@ export default function ProfileScreen() {
     </Pressable>
     <Text>{user?.name}</Text>
     </View>
+        { mentorUser!=null? 
     <View style = {styles.view}>
     <Text>Mentor Details</Text>
     <Pressable onPress= {initiateChat}>
@@ -106,11 +107,20 @@ export default function ProfileScreen() {
 
 </Pressable>
 
+    </View>:
+    <View style = {styles.view}>
+    <Text>No mentor is allocated yet</Text>
+    
+    </View>}
+
+
+<View style = {styles.view}>
 <Pressable style ={{backgroundColor:'#FF597B', alignItems:'center', borderRadius:10, width:100, height:50, margin:10, justifyContent:'center'}} onPress= {logout}>
   <Text>Logout</Text>
     
 </Pressable>
-    </View>     
+</View>
+
 
 
  
