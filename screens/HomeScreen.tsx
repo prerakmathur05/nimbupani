@@ -24,7 +24,7 @@ import { ChatRoom, ChatRoomUser } from "../src/models";
 
 export default function TabOneScreen() {
   const [chatRooms, setChatRooms]= useState<ChatRoom[]>([]);
-
+  
   //test
   // useEffect(()=>{
   //   const fetchDummyData = async () =>{
