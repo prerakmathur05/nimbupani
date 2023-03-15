@@ -1,10 +1,66 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled, AsyncItem, AsyncCollection } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@aws-amplify/datastore";
 
 
 
 
+
+type EagerMentorModel = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<MentorModel, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly MenteeModels?: (MenteeModel | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyMentorModel = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<MentorModel, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly MenteeModels: AsyncCollection<MenteeModel>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type MentorModel = LazyLoading extends LazyLoadingDisabled ? EagerMentorModel : LazyMentorModel
+
+export declare const MentorModel: (new (init: ModelInit<MentorModel>) => MentorModel) & {
+  copyOf(source: MentorModel, mutator: (draft: MutableModel<MentorModel>) => MutableModel<MentorModel> | void): MentorModel;
+}
+
+type EagerMenteeModel = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<MenteeModel, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly mentormodelID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyMenteeModel = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<MenteeModel, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly mentormodelID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type MenteeModel = LazyLoading extends LazyLoadingDisabled ? EagerMenteeModel : LazyMenteeModel
+
+export declare const MenteeModel: (new (init: ModelInit<MenteeModel>) => MenteeModel) & {
+  copyOf(source: MenteeModel, mutator: (draft: MutableModel<MenteeModel>) => MutableModel<MenteeModel> | void): MenteeModel;
+}
 
 type EagerMentorRelation = {
   readonly [__modelMeta__]: {

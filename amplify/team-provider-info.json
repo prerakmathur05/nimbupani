@@ -22,7 +22,7 @@
       "function": {
         "nimbupanied3e4d64PostConfirmation": {
           "deploymentBucketName": "amplify-nimbupani-staging-22149-deployment",
-          "s3Key": "amplify-builds/nimbupanied3e4d64PostConfirmation-48634532476c63532b72-build.zip"
+          "s3Key": "amplify-builds/nimbupanied3e4d64PostConfirmation-514773476a3874662f78-build.zip"
         }
       }
     }

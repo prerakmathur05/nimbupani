@@ -4,9 +4,11 @@ import { schema } from './schema';
 
 
 
-const { MentorRelation, Mentee, Mentor, Message, ChatRoom, User, ChatRoomUser } = initSchema(schema);
+const { MentorModel, MenteeModel, MentorRelation, Mentee, Mentor, Message, ChatRoom, User, ChatRoomUser } = initSchema(schema);
 
 export {
+  MentorModel,
+  MenteeModel,
   MentorRelation,
   Mentee,
   Mentor,
