@@ -24,6 +24,9 @@
           "deploymentBucketName": "amplify-nimbupani-staging-22149-deployment",
           "s3Key": "amplify-builds/nimbupanied3e4d64PostConfirmation-514773476a3874662f78-build.zip"
         }
+      },
+      "storage": {
+        "s3a24e614b": {}
       }
     }
   }

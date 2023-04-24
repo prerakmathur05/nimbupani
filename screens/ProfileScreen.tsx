@@ -50,6 +50,7 @@ export default function ProfileScreen() {
   const [user, setUser] = useState<User | null>(null);
   const [chatRoom, setChatRoom] = useState<ChatRoom | null>(null);
   const [mentorUser, setMentorUser] = useState<User | null>(null);
+  const [chatRoomUSer, setChatRoomUser] = useState<ChatRoomUser | null>(null);
 
   const navigation = useNavigation();
 
@@ -68,6 +69,11 @@ export default function ProfileScreen() {
       );
       const mentor = await DataStore.query(User, mentee?.mentormodelID);
       setMentorUser(mentor);
+
+      //Fetching ChatRooms
+      const fetchChatRooms = await userModelUser?.ChatRooms;
+      // const filteredChatRomms = fetchChatRooms.filter(x=>)
+      console.log(fetchChatRooms);
 
       // console.log("mentor is ->", mentorForThisMentee);
 
